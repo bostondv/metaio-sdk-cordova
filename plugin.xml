@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.pomelodesign.cordova.metaio"
+    version="1.3.0">
+
+    <name>MetaioGap</name>
+    <author>Pomelo Design Inc.</author>
+    <keywords>AR,Augmented Reality,Metaio</keywords>
+    <description>Metaio SDK plugin for Cordova (supports up to SDK 5.5)</description>
+    <license>MIT</license>
+
+    <engines>
+      <engine name="cordova" version=">=3.0"></engine>
+    </engines>
+
+    <js-module src="www/metaio.js" name="metaio">
+        <clobbers target="metaio" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <!-- declare implementation of MetaioSDK -->
+        <source-file src="src/android/ARELActivity.java" target-dir="src/com/metaio/sdk" />
+        <source-file src="src/android/ARViewActivity.java" target-dir="src/com/metaio/sdk" />
+
+        <source-file src="src/android/ARELViewActivity.java" target-dir="src/com/pomelodesign/cordova/metaio" />
+        <source-file src="src/android/MetaioCordovaWebView.java" target-dir="src/com/pomelodesign/cordova/metaio" />
+        <source-file src="src/android/MetaioPlugin.java" target-dir="src/com/pomelodesign/cordova/metaio" />
+
+        <source-file src="src/android/metaiolayout.xml" target-dir="res/layout" />
+
+        <!-- add permissions and requirements -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.pomelodesign.cordova.metaio.ARELViewActivity" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+            <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.metaio.sdk.ARELActivity" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        </config-file>
+
+        <!-- adds MetaioSDK in project's config.xml -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Metaio">
+                <param name="android-package" value="com.pomelodesign.cordova.metaio.MetaioPlugin" />
+            </feature>
+        </config-file>
+
+        <!-- Adds license key -->
+        <config-file target="res/values/strings.xml" parent="/resources">
+            <string name="metaioSDKSignature">$API_KEY</string>
+        </config-file>
+
+        <!-- visible after installation -->
+        <info>
+            1. Copy metaioSDK android /libs to project /libs directory.
+            2. Update arelConfigPath in config.xml if desired.
+            3. Update metaioSDKSignature in res/values/strings.xml
+            4. Update import path to BuildConfig in MetaioPlugin.java
+        </info>
+
+    </platform>
+
+    <!-- iOS -->
+    <platform name="ios">
+
+        <!-- Metaio Source -->
+        <header-file src="src/ios/ARELViewController.h" />
+        <source-file src="src/ios/ARELViewController.mm" compiler-flags="-fno-objc-arc" />
+
+        <header-file src="src/ios/EAGLView.h" />
+        <source-file src="src/ios/EAGLView.mm" compiler-flags="-fno-objc-arc" />
+
+        <header-file src="src/ios/MetaioSDKViewController.h" />
+        <source-file src="src/ios/MetaioSDKViewController.mm" compiler-flags="-fno-objc-arc" />
+
+        <header-file src="src/ios/MetaioPlugin.h" />
+        <source-file src="src/ios/MetaioPlugin.mm" />
+
+        <header-file src="src/ios/ARELConfigParser.h" />
+        <source-file src="src/ios/ARELConfigParser.m" />
+
+        <source-file src="src/ios/ARELViewController.xib" />
+        <header-file src="src/ios/SplashView.xib" />
+
+        <!-- TODO: Add metaioSDK.framework
+             https://issues.apache.org/jira/browse/CB-5238 -->
+
+        <!-- Metaio SDK Frameworks -->
+        <framework src="libz.dylib" />
+        <framework src="libxml2.dylib" />
+        <framework src="QuartzCore.framework" />
+        <framework src="CFNetwork.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="OpenGLES.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="Security.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="CoreLocation.framework" />
+        <framework src="CoreMotion.framework" />
+        <framework src="CoreVideo.framework" />
+        <framework src="CoreImage.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="UIKit.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="MediaPlayer.framework" />
+        <framework src="EventKit.framework" />
+        <framework src="EventKitUI.framework" />
+
+        <!-- Include MetaioSDK configuration  -->
+        <config-file target="config.xml" parent="/*">
+            <feature name="Metaio">
+                <param name="ios-package" value="MetaioPlugin"/>
+            </feature>
+        </config-file>
+
+        <!-- Add license key -->
+        <config-file target="*-Info.plist" parent="MetaioLicenseString">
+            <string>$API_KEY</string>
+        </config-file>
+
+        <!-- visible after installation -->
+        <info>
+            1. You must add metaioSDK.framework manually to your Xcode project.
+            2. Update arelConfigPath in config.xml if desired.
+            3. Update MetaioLicenseString in your Info.plist
+        </info>
+
+    </platform>
+
+</plugin>
