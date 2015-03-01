@@ -1,6 +1,8 @@
-# MetaioGap
+# Metaio Cordova Plugin
 
 Metaio SDK plugin for Cordova (supports up to SDK 5.5)
+
+**Note: this plugin is not actively maintained and unsupported at this time.**
 
 ## Installation
 
@@ -34,3 +36,7 @@ The plugin dispatches two events that you can listen for in either web view.
 metaioOpen - fired when metaio view is opened successfully.
 
 metaioClose - fired when metaio view is closed successfully. If a url is provided in the close method the event 'detail' parameter will contain that url.
+
+## Copyright and license
+
+Code copyright 2013-2015 Boston Dell-Vandenberg. Code released under [the MIT license](https://github.com/bostondv/metaio-sdk-cordova/blob/master/LICENSE.md). Some parts copyright of [Metaio gmbH](http://metaio.com/).

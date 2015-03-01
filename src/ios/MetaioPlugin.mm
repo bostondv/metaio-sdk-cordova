@@ -1,6 +1,6 @@
-// MetaioGap - v1.0.0
-// (c) 2013 Boston Dell-Vandenberg, boston@pomelodesign.com, MIT Licensed.
-// MetaioPlugin.mm may be freely distributed under the MIT license.
+// Metaio Cordova Plugin
+// (c) Boston Dell-Vandenberg <boston@pomelodesign.com>
+// MetaioPlugin.h may be freely distributed under the MIT license.
 
 #import "MetaioPlugin.h"
 #import <Cordova/CDVPluginResult.h>

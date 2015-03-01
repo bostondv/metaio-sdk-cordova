@@ -1,8 +1,6 @@
-/*
-MetaioGap - v1.2.0
-(c) 2014 Boston Dell-Vandenberg, boston@pomelodesign.com, MIT Licensed.
-metaio.js may be freely distributed under the MIT license.
-*/
+// Metaio Cordova Plugin
+// (c) Boston Dell-Vandenberg <boston@pomelodesign.com>
+// MetaioPlugin.h may be freely distributed under the MIT license.
 
 var exec = require('cordova/exec');
 

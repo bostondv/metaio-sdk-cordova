@@ -1,3 +1,7 @@
+// Metaio Cordova Plugin
+// (c) Boston Dell-Vandenberg <boston@pomelodesign.com>
+// MetaioPlugin.h may be freely distributed under the MIT license.
+
 package  com.pomelodesign.cordova.metaio;
 
 import java.io.File;
